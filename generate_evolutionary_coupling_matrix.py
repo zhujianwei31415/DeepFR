@@ -78,18 +78,19 @@ def main(seqfile, threads=1, output_dir='./'):
     a3m_file = prefix + '.a3m'
     cmds = [hhblits, '-i', seqfile, '-d', hhblitsdb, '-n', str(HHBLITS_ITER), '-cpu', str(threads), '-oa3m', a3m_file, '-o', hhr_file]
     print_commands(cmds)
-    #check_output(cmds, shell=True)
+    subprocess.call(cmds)
 
     print('Converting a3m file to aln file...')
     aln_file = prefix + '.aln'
-    #convert_a3m_to_aln(a3m_file, aln_file)
+    convert_a3m_to_aln(a3m_file, aln_file)
 
     print('CCMpred from aln file...')
     ccm_file = prefix + '.ccm'
     cmds = [ccmpred, '-t', str(threads), aln_file, ccm_file]
     print_commands(cmds)
+    subprocess.call(cmds)
    
-    print('Run hhpred done.')
+    print('Run sciprt done.')
 
 
 if __name__ == '__main__':
