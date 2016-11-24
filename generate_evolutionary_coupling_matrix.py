@@ -2,6 +2,7 @@
 
 import os, sys
 import argparse
+import numpy as np
 import subprocess
 
 from localconfig import *
@@ -62,6 +63,7 @@ def main(seqfile, threads=1, output_dir='./'):
     
     print('Checking databases...')
     check_hhblitsdb()
+    print('Databases OK.')
     
     print('Checking output directory...')
     check_outdir(output_dir)
@@ -89,9 +91,8 @@ def main(seqfile, threads=1, output_dir='./'):
     cmds = [ccmpred, '-t', str(threads), aln_file, ccm_file]
     print_commands(cmds)
     subprocess.call(cmds)
-   
-    print('Run sciprt done.')
-
+    
+    print('Generating evolutionary coupling matrix done.')
 
 if __name__ == '__main__':
     args = parse_arguments()
