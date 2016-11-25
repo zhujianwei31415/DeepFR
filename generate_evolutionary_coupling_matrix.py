@@ -2,7 +2,6 @@
 
 import os, sys
 import argparse
-import numpy as np
 import subprocess
 
 from localconfig import *
