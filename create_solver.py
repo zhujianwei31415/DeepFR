@@ -4,7 +4,7 @@
 # Author: zhujianwei@ict.ac.cn (Jianwei Zhu)
 import sys
 
-caffe_root = '/home/zhujianwei/workspace/caffe_zjw/'
+from localconfig import caffe_root
 sys.path.insert(0, caffe_root + 'python')
 import caffe
 from caffe.proto import caffe_pb2
