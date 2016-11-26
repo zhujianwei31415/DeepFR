@@ -1,3 +1,9 @@
+# Copyright
+# Author: zhujianwei@ict.ac.cn (Jianwei Zhu)
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
 # exception
 import sys
 if __name__ == '__main__':
@@ -14,3 +20,6 @@ ccmpred = '/home/zhujianwei/local/bin/ccmpred'
 # Maximum amount of cores to use per default
 from multiprocessing import cpu_count
 threads = cpu_count()
+
+# caffe configure
+caffe_root = '/home/zhujianwei/softwares/DeepLearning/caffe/'
