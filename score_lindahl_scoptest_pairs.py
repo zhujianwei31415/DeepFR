@@ -16,51 +16,7 @@ sys.path.insert(0, caffe_root + 'python')
 import caffe
 
 from utils import parse_listfile
-
-def generate_caffenet(prototxt, caffemodel):
-    if not os.path.isfile(caffemodel) or not os.path.isfile(prototxt):
-        print('cannot find caffemodel', file=sys.stderr)
-        return None
-    try:
-        # set caffe mode
-        caffe.set_mode_cpu()
-        #caffe.set_mode_gpu()
-        # load weights
-        net = caffe.Net(prototxt, caffemodel, caffe.TEST)
-    except:
-        print('load caffenet failed', file=sys.stderr)
-        return None
-    return net
-
-def create_transformer(net):
-    # create transformer for the input called 'data'
-    net.blobs['data'].reshape(1, 1, 227, 227)
-    transformer = caffe.io.Transformer({'data': net.blobs['data'].data.shape})
-    transformer.set_transpose('data', (2,0,1))     # move image channels to outermost dimension
-    transformer.set_raw_scale('data', 1)           # rescale from [0, 1] to [0, 255]
-    #transformer.set_channel_swap('data', (2,1,0)) # swap channels from RGB to BGR
-    return transformer
-
-def extract_feature(net, transformer, image_path):
-    image = caffe.io.load_image(image_path, color=False)
-    image = caffe.io.resize_image(image, (256, 256))
-    image = caffe.io.oversample([image], (227, 227))
-    transformed_image = transformer.preprocess('data', image[0])
-    net.blobs['data'].data[...] = transformed_image
-    output = net.forward()        
-    feature = net.blobs['fc7_bn'].data[0].copy()
-    return feature
-
-def extract_feature_list(net, transformer, file_list):
-    features = []
-    for i, v in enumerate(file_list):
-        print('.', end='', file=sys.stderr)
-        if not (i+1) % 100:
-            print(i+1, file=sys.stderr)
-        feature = extract_feature(net, transformer, v)
-        features.append(feature)
-    print(file=sys.stderr)
-    return features
+from extract_feature import *
 
 def calculate_similarity(feature1, feature2):
     return 1 - distance.cosine(feature1, feature2)
