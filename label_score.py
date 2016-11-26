@@ -37,6 +37,10 @@ def main(lindahl_pairwise_score, lindahl_family, lindahl_superfamily, lindahl_fo
     fout_superfamily = open('superfamily.txt', 'w')
     fout_fold = open('fold.txt', 'w')
     for i, p in enumerate(pairs):
+        if not (i+1) % 100:
+            print('.', end='', file=sys.stderr)
+        if not (i+1) % 10000:
+            print(i+1, file=sys.stderr)
         if p in lindahl_family:
             print('+1', scores[i], file=fout_family)
         elif p in lindahl_superfamily:
