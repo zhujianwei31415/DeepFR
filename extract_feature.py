@@ -21,14 +21,14 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description="Generate evolutionary coupling matrix for protein fold recognition.", add_help=False)
     
     input_args = parser.add_argument_group('Input arguments')
+    input_args.add_argument('-n', '--network', help='convolutional neural network', required=True)
+    input_args.add_argument('-m', '--model', help='caffemodel', required=True)
     file_args = input_args.add_mutually_exclusive_group(required=True)
     file_args.add_argument('-i', '--input', metavar='<input_filename>', help='input a single file')
     file_args.add_argument('-l', '--list', metavar='<input_listfile>', help='input a list of files')
-    input_args.add_argument('-m', '--model', help='caffemodel', required=True)
-    input_args.add_argument('-n', '--network', help='convolutional neural network', required=True)
 
     output_args = parser.add_argument_group('Output arguments')
-    output_args.add_argument('-o', '--output', metavar='<output_file>', help='output all features to a file')
+    output_args.add_argument('-o', '--output', metavar='<output_file>', help='output all features to a file [default=stdout]')
 
     other_args = parser.add_argument_group('Other arguments')
     other_args.add_argument('-h', '--help', action='help', help='show this help message and exit')
