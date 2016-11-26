@@ -7,6 +7,7 @@ from __future__ import division
 from __future__ import print_function
 
 import sys
+import time
 import numpy as np
 
 from utils import parse_listfile
@@ -23,6 +24,7 @@ def parse_pair(pairlist):
     return parse_listfile(pairlist, [1, 2])
 
 def main(lindahl_pairwise_score, lindahl_family, lindahl_superfamily, lindahl_fold):
+    start = time.clock()
     # score dict
     pairs, scores = parse_pairwise_score(lindahl_pairwise_score)
 
@@ -54,6 +56,9 @@ def main(lindahl_pairwise_score, lindahl_family, lindahl_superfamily, lindahl_fo
     fout_family.close()
     fout_superfamily.close()
     fout_fold.close()
+    
+    stop = time.clock()
+    print('Time Spent =', stop - start)
     
 if __name__ == '__main__':
     if len(sys.argv) != 5:
