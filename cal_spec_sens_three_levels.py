@@ -48,7 +48,7 @@ def main(family_score, superfamily_score, fold_score):
 
 if __name__ == '__main__':
     if len(sys.argv) != 4:
-        sys.exit('Usage: %s <family_score> <superfamily_score> <fold_score>' % sys.argv[0])
+        sys.exit('Usage: %s <value-family> <value-superfamily> <value-fold>' % sys.argv[0])
     family_score, superfamily_score, fold_score = sys.argv[1:]
     
     main(family_score, superfamily_score, fold_score)
