@@ -23,3 +23,7 @@ threads = cpu_count()
 
 # caffe configure
 caffe_root = '/home/zhujianwei/softwares/DeepLearning/caffe/'
+
+# fasta configure
+fasta = '/home/zhujianwei/local/bin/fasta36'
+fastadb = '/home2/zhujianwei/databases/scop/astral/scopeseq-2.06/astral-scopedom-seqres-gd-sel-gs-bib-95-2.06.fa'

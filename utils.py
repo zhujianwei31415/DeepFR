@@ -18,7 +18,7 @@ def print_commands(cmds):
 # exculate a command and get output
 def check_output(cmds):
     print(' '.join(cmds))
-    return subprocess.Popen(cmds, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
+    return subprocess.Popen(cmds, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
 
 # parse list file for some columns
 def parse_listfile(listfile, col_list=None):
