@@ -49,7 +49,7 @@ def main(train_pairs, test_pairs, model, output):
     print(test_X.shape, test_y.shape, file=sys.stderr)
     
     # random forest training
-    rfc = RandomForestClassifier(n_estimators=503, n_jobs=-1)
+    rfc = RandomForestClassifier(n_estimators=500, n_jobs=-1)
     rfc.fit(train_X, train_y)
     
     # save and load back the pickled model
