@@ -29,21 +29,6 @@ def parse_pairwise_score(pairwise_score):
 def parse_pair(pairlist):
     return parse_listfile(pairlist, [1, 2])
 
-def get_top_indexs(scores):
-    scores = np.array(scores)
-    top_inds = np.argsort(scores)[::-1]
-    # get top1
-    top1 = list(top_inds[:1])
-    for i in top_inds[1:]:
-        if scores[i] == scores[top1[0]]:
-            top1.append(i)
-    # get top5
-    top5 = list(top_inds[:5])
-    for i in top_inds[5:]:
-        if scores[i] == scores[top5[4]]:
-            top5.append(i)
-    return top1, top5
-
 def main(lindahl_pairwise_score, lindahl_data):
     # score dict
     pairs, scores = parse_pairwise_score(lindahl_pairwise_score)
@@ -55,25 +40,20 @@ def main(lindahl_pairwise_score, lindahl_data):
 
     # lindahl data
     lindahl_pairs = parse_pair(lindahl_data)
-    lindahl_names = []
-    for i in lindahl_pairs:
-        if i[0] not in lindahl_names:
-            lindahl_names.append(i[0])
-    #lindahl_names = list(set([i[0] for i in lindahl_pairs]))
+    lindahl_names = list(set([i[0] for i in lindahl_pairs]))
     
     # calculte top1 top5
     top = [0, 0]
     for i in lindahl_names:
         tmp_scores = [s[1] for s in score_dict[i]]
-        top1, top5 = get_top_indexs(tmp_scores)
-        for k in top1:
-            if score_dict[i][k][0] in lindahl_pairs:
-                top[0] += 1
-                break
-        for k in top5:
-            if score_dict[i][k][0] in lindahl_pairs:
-                top[1] += 1
-                break
+        top_inds = np.argsort(tmp_scores)[::-1]
+        if score_dict[i][top_inds[0]][0] in lindahl_pairs:
+            top = [i + 1 for i in top]
+        else:
+            for k in top_inds[1:5]:
+                if score_dict[i][k][0] in lindahl_pairs:
+                    top[1] += 1
+                    break
     print('Test_number:', len(lindahl_names))
     print('Top_number:', top)
     print('Sensitivity:', [i/len(lindahl_names) for i in top])
