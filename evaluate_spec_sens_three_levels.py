@@ -36,15 +36,15 @@ def main(family_score, superfamily_score, fold_score):
     # calculate family level
     y_test, y_score = read_score(family_score)
     spec, sens = cal_spec_sens(y_test, y_score)
-    write_spect_sens(spec, sens, 'fam.txt')
+    write_spect_sens(spec, sens, 'spec-sens-family')
     # calculate superfamily level
     y_test, y_score = read_score(superfamily_score)
     spec, sens = cal_spec_sens(y_test, y_score)
-    write_spect_sens(spec, sens, 'super.txt')
+    write_spect_sens(spec, sens, 'spec-sens-superfamily')
     # calculate fold level
     y_test, y_score = read_score(fold_score)
     spec, sens = cal_spec_sens(y_test, y_score)
-    write_spect_sens(spec, sens, 'fold.txt')
+    write_spect_sens(spec, sens, 'spec-sens-fold')
 
 if __name__ == '__main__':
     if len(sys.argv) != 4:

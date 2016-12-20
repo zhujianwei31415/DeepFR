@@ -35,9 +35,9 @@ def main(lindahl_pairwise_score, lindahl_family, lindahl_superfamily, lindahl_fo
     assert len(lindahl_family) == 1646 and len(lindahl_superfamily) == 2130 and len(lindahl_fold) == 3662
 
     # label +1 or -1 for scores
-    fout_family = open('family.txt', 'w')
-    fout_superfamily = open('superfamily.txt', 'w')
-    fout_fold = open('fold.txt', 'w')
+    fout_family = open('value-family', 'w')
+    fout_superfamily = open('value-superfamily', 'w')
+    fout_fold = open('value-fold', 'w')
     for i, p in enumerate(pairs):
         if not (i+1) % 100:
             print('.', end='', file=sys.stderr)
