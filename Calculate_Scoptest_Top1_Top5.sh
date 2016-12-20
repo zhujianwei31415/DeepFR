@@ -13,6 +13,8 @@ then
   exit
 fi
 
+echo "$0 $1"
+
 dir=`dirname $(readlink -f $0)`
 L_DATA=$dir/list
 
