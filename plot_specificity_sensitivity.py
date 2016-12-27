@@ -26,7 +26,7 @@ def read_spec_sens(score_file):
 
 # read in score
 # setup colors
-colors = ['black', 'blue', 'green', 'gold', 'maroon', 'purple', 'red', 'lime', 'magenta']
+colors = ['red', 'blue', 'green', 'gold', 'maroon', 'purple', 'black', 'c', 'm']
 names = ['DeepFRpro', 'DeepFR', 'RFDN-Fold', 'DN-Fold', 'DN-FoldS', 'RF-Fold', 'FOLDpro', 'HMMER', 'THREADER']
 files = ['%s/%s/spec-sens-%s' % (results_dir, i, level) for i in names]
 
@@ -53,7 +53,10 @@ plt.figure(figsize=(16, 16), dpi=100)
 
 # Plot Precision-Recall curve for each class
 for i, color in zip(range(n_classes), colors):
-    plt.plot(precision[i], recall[i], color=color, lw=2, label='{0}'.format(names[i]))
+    if i < 2:
+        plt.plot(precision[i], recall[i], color=color, lw=3, label='{0}'.format(names[i]))
+    else:
+        plt.plot(precision[i], recall[i], color=color, lw=2, label='{0}'.format(names[i]))
 
 plt.xticks(fontsize=24)
 plt.yticks(fontsize=24)
