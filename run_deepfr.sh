@@ -26,18 +26,18 @@ dir=`dirname $(readlink -f $0)`
 server=$dir/../deepfr_model/server
 
 echo "Generating EC matrix..."
-#$dir/generate_EC_matrix.py -i $seqfile --outdir $outdir
+$dir/generate_EC_matrix.py -i $seqfile --outdir $outdir
 
 echo "Converting coupling..."
 ccmfile=$outdir/$target.ccm
 image=$outdir/$target.jpg
-#$dir/convert_coupling.py $ccmfile $image
+$dir/convert_coupling.py $ccmfile $image
 
 echo "Running DeepFR..."
 net=$server/deploy.prototxt
 model=$server/caffe_deepfrnet.caffemodel
 feat=$outdir/$target.feat
-#$dir/extract_feature.py -n $net -m $model -i $image -o $feat
+$dir/extract_feature.py -n $net -m $model -i $image -o $feat
 
 echo "Scoring and Ranking..."
 namelabel=$server/scope95_2.06_name_label_list
