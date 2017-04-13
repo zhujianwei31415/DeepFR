@@ -9,18 +9,18 @@ fi
 query_fasta=$1
 target_fasta=$2
 
+rm -r tmp queryDB* targetDB* resultDB*
+
 mmseqs createdb $query_fasta queryDB
 
 mmseqs createdb $target_fasta targetDB
 
 mmseqs createindex targetDB
 
-rm -rf resultDB*
-
 mkdir tmp
 
-mmseqs search queryDB targetDB resultDB tmp --max-seq-id 1.0 --min-seq-id 0.95
+mmseqs search queryDB targetDB resultDB tmp --min-seq-id 0.25 -e 0.0001
 
 mmseqs convertalis queryDB targetDB resultDB resultDB.m8
 
-rm -rf tmp
+rm -r tmp

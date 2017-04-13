@@ -8,12 +8,13 @@ fi
 
 db_fasta=$1
 
+rm -r tmp DB* clu*
+
 mmseqs createdb $db_fasta DB
 
 mkdir tmp
 
-#mmseqs cluster DB clu tmp --min-seq-id 0.95
-mmseqs cluster DB clu tmp --min-seq-id 0.40
+mmseqs cluster DB clu tmp --min-seq-id 0.95 -e 0.0001
 
 mmseqs createseqfiledb DB clu clu_seq 
 
