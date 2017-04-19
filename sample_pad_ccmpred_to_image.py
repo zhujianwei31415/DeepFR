@@ -46,11 +46,11 @@ def sample_or_pad_matrix(matrix):
     assert matrix.shape[0] == matrix.shape[1]
 
     # calculate random choose times
-    num = abs(SHAPE[0] - matrix.shape[0]) + 1 # add pseudo-count 1
-    times = int(num // CUTOFF)
+    num = abs(SHAPE[0] - matrix.shape[0])
+    times = int(num // CUTOFF) + 1 # add pseudo-count 1
 
     # sample or pad matrix
-    if matrix.shape[0] <= SHAPE[0]:
+    if matrix.shape[0] < SHAPE[0]:
         return [pad_matrix(matrix) for _ in range(times)]
     else:
         return [sample_matrix(matrix) for _ in range(times)]
@@ -64,7 +64,7 @@ def main(ccmpred_output, outdir):
     ccm_mat = np.loadtxt(ccmpred_output)
 
     # for debug
-    np.random.seed(31415)
+    #np.random.seed(31415)
 
     # sample or pad matrix
     fix_mat = sample_or_pad_matrix(ccm_mat)
