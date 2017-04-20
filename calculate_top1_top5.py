@@ -42,7 +42,7 @@ def get_top_indexs(scores):
     for i in top_inds[5:]:
         if scores[i] == scores[top5[4]]:
             top5.append(i)
-    assert len(top1) < 10 and len(top5) < 20
+    assert len(top1) < 15 and len(top5) < 30
     return top1, top5
 
 def main(lindahl_pairwise_score, lindahl_data):
