@@ -16,9 +16,13 @@ except ImportError:
 def calculate_distance(chain):
     dist = []
     for res1 in chain:
+        if 'CA' not in res1:
+            continue
         c1 = res1['CB'] if 'CB' in res1 else res1['CA']
         tmp_dist = []
         for res2 in chain:
+            if 'CA' not in res2:
+                continue
             c2 = res2['CB'] if 'CB' in res2 else res2['CA']
             tmp_dist.append(c1 - c2)
         dist.append(tmp_dist)
