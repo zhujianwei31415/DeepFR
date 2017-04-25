@@ -77,7 +77,7 @@ def main(lindahl_pairwise_score, lindahl_data):
                 break
     print('Test_number:', len(lindahl_names))
     print('Top_number:', top)
-    print('Sensitivity:', [i/len(lindahl_names) for i in top])
+    print('Sensitivity:', '%4.1f %4.1f' % tuple([i/len(lindahl_names)*100 for i in top]))
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
