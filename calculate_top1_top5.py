@@ -23,7 +23,7 @@ def parse_pairwise_score(pairwise_score):
     pairs, scores = [], []
     for i in lines:
         pairs.append((i[0], i[1]))
-        scores.append(i[2])
+        scores.append(float(i[2]))
     return pairs, scores
 
 def parse_pair(pairlist):
