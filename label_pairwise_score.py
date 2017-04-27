@@ -6,6 +6,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import os
 import sys
 import time
 import numpy as np
@@ -61,7 +62,13 @@ def main(lindahl_pairwise_score, lindahl_family, lindahl_superfamily, lindahl_fo
     print('Time Spent =', stop - start)
     
 if __name__ == '__main__':
-    if len(sys.argv) != 5:
-        sys.exit('Usage: %s <lindahl_pairwise_score> <lindahl_family> <lindahl_superfamily> <lindahl_fold>' % sys.argv[0])
-    lindahl_pairwise_score, lindahl_family, lindahl_superfamily, lindahl_fold = sys.argv[1:]
+    if len(sys.argv) != 2:
+        sys.exit('Usage: %s <lindahl_pairwise_score>' % sys.argv[0])
+    lindahl_pairwise_score = sys.argv[1]
+
+    prefix = os.path.dirname(sys.argv[0])
+    lindahl_family = '%s/list/lindahl_family' % prefix
+    lindahl_superfamily = '%s/list/lindahl_superfamily' % prefix
+    lindahl_fold = '%s/list/lindahl_fold' % prefix
+
     main(lindahl_pairwise_score, lindahl_family, lindahl_superfamily, lindahl_fold)
