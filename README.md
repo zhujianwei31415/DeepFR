@@ -3,13 +3,21 @@ The source code for DeepFR.
 
 ## requirements
 - mmseqs
+
 https://github.com/soedinglab/mmseqs2
+
 - cd-hit
+
 https://github.com/weizhongli/cdhit
+
 - blastp
+
 https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastp&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome
+
 - caffe
+
 https://github.com/BVLC/caffe
+
 - numpy>=1.7.1
 - scipy>=0.13.2
 - matplotlib>=1.3.1
