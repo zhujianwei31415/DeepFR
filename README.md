@@ -20,18 +20,22 @@ https://github.com/BVLC/caffe
 
 - numpy>=1.7.1
 - scipy>=0.13.2
+- biopython>=1.68
 - matplotlib>=1.3.1
 - scikit-learn>=0.18.1
 
-## prepare data
+
+## Installation
+
+
+
+## training and test
 - choose_sequences_by_name_list.py
 - convert_ccmpred_to_image.py
 - convert_pdb_to_image.py
 - generate_EC_matrix.py
 - repair_pdb_chain.py
 - sample_pad_ccmpred_to_image.py
-
-## score for query
 - create_alexnet.py
 - create_solver.py
 - extract_feature.py
@@ -40,6 +44,11 @@ https://github.com/BVLC/caffe
 - score_lindahl_scoptest_pairs.py
 - test_random_forest.py
 - train_test_random_forest.py
+
+## inference
+- extract_feature.py
+- score_deepfr.py
+- score_lindahl_scoptest_pairs.py
 
 ## evaluation
 - calculate_top1_top5.py
