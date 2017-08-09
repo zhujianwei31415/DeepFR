@@ -22,4 +22,4 @@ from multiprocessing import cpu_count
 threads = cpu_count()
 
 # caffe configure
-caffe_root = '/home/zhujianwei/softwares/DeepLearning/caffe/'
+caffe_root = '/home/zhujianwei/Github/caffe/'
