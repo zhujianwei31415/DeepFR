@@ -1,0 +1,15 @@
+#!/bin/bash
+
+./training_test/mmseqs_search_db.sh test.fasta train.fasta
+
+./training_test/mmseqs_cluster_db.sh train.fasta
+
+#rename filtered train.fasta to train
+
+makeblastdb -dbtype prot -in train -parse_seqids
+
+blastp -evalue 0.0001 -num_alignments 100000 -num_threads 16 -db train -query test -out train.blast -outfmt 6
+
+cd-hit-2d -i test -i2 train -o train.novel -c 0.4 -n 2 -d 0 -M 16000 -T 16 -s2 0.9
+
+cd-hit -i train -o train95 -c 0.95 -n 5 -M 16000 -d 0 -T 16
