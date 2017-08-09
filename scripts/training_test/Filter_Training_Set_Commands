@@ -1,8 +1,8 @@
 #!/bin/bash
 
-./training_test/mmseqs_search_db.sh test.fasta train.fasta
+./mmseqs_search_db.sh test.fasta train.fasta
 
-./training_test/mmseqs_cluster_db.sh train.fasta
+./mmseqs_cluster_db.sh train.fasta
 
 #rename filtered train.fasta to train
 
