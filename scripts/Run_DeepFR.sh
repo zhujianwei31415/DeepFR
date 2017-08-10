@@ -23,26 +23,29 @@ then
 fi
 
 dir=`dirname $(readlink -f $0)`
-server=$dir/../deepfr_model/server
+deepfr=$dir/deepfr/
+models=$dir/../models/
 
 echo "Generating EC matrix..."
-$dir/generate_EC_matrix.py -i $seqfile --outdir $outdir
+$deepfr/generate_EC_matrix.py -i $seqfile --outdir $outdir
 
 echo "Converting coupling..."
 ccmfile=$outdir/$target.ccm
-image=$outdir/$target.jpg
-$dir/convert_coupling.py $ccmfile $image
+imagelist=$outdir/$target.list
+$deepfr/convert_coupling.py $ccmfile $outdir
 
 echo "Running DeepFR..."
-net=$server/deploy.prototxt
-model=$server/caffe_deepfrnet.caffemodel
+net=$models/deploy.prototxt
+model=$models/caffe_deepfrnet.caffemodel
 feat=$outdir/$target.feat
-$dir/extract_feature.py -n $net -m $model -i $image -o $feat
+$deepfr/extract_feature.py -n $net -m $model -l $imagelist -o $feat
 
-echo "Scoring and Ranking..."
-namelabel=$server/scope95_2.06_name_label_list
-featlist=$server/scope95_2.06_features.npy
+echo "Scoring ..."
+namelabel=$models/scope95_2.06_label_dict.pkl
+featlist=$models/scope95_2.06_feature_dict.pkl
 score=$outdir/$target.score
+$deepfr/score_query_template.py $namelabel $featlist $feat $score
+
+echo "Ranking ..."
 rank=$outdir/$target.rank
-$dir/score_deepfr.py $namelabel $featlist $feat $score
 sort -nk2 -r $score > $rank

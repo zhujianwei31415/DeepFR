@@ -99,7 +99,7 @@ if __name__ == '__main__':
         filelist = [filename]
     else:
         filelist = [i[0] for i in parse_listfile(filename)]
-    print(filelist)
+    print(len(filelist))
     
     # check caffenet model
     net = generate_caffenet(prototxt, caffemodel)
