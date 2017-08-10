@@ -1,23 +1,8 @@
 # DeepFR
-The source code for DeepFR.
+Improving Protein Fold Recognition by Extracting Fold-specific Features from Predicted Residue-residue Contacts
 
 ## requirements
-- mmseqs
-
-https://github.com/soedinglab/mmseqs2
-
-- cd-hit
-
-https://github.com/weizhongli/cdhit
-
-- blastp
-
-https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastp&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome
-
-- caffe
-
-https://github.com/BVLC/caffe
-
+- caffe>=1.0
 - numpy>=1.7.1
 - scipy>=0.13.2
 - biopython>=1.68
@@ -26,41 +11,12 @@ https://github.com/BVLC/caffe
 
 
 ## Installation
+- Download the pretrained model, label_dict and pregenerated feature_dict from http://protein.ict.ac.cn/deepfr/evaluation_data/scripts/models/ and put it under ./models directory
+- Modify program path (hhblits, ccmpred, caffe) in ./scripts/localconfig.py
 
-
-
-## training and test
-- choose_sequences_by_name_list.py
-- convert_ccmpred_to_image.py
-- convert_pdb_to_image.py
-- generate_EC_matrix.py
-- repair_pdb_chain.py
-- sample_pad_ccmpred_to_image.py
-- create_alexnet.py
-- create_solver.py
-- extract_feature.py
-- add_EC_feature.py
-- score_deepfr.py
-- score_lindahl_scoptest_pairs.py
-- test_random_forest.py
-- train_test_random_forest.py
-
-## inference
-- extract_feature.py
-- score_deepfr.py
-- score_lindahl_scoptest_pairs.py
-
-## evaluation
-- calculate_top1_top5.py
-- choose_scores_by_pairs.py
-- choose_subfeature_from_list.py
-- evaluate_spec_sens_three_levels.py
-- label_pairwise_score.py
-- parse_Top1_Top5.py
-- plot_dendroheatmap.py
-- plot_specificity_sensitivity.py
-
-## utility
-- pydendroheatmap.py
-- localconfig.py
-- utils.py
+## Usage
+- Run ./scripts/Run_DeepFR.sh d1a3aa_ examples/d1a3aa_.fasta outdir
+- You can find the .rank file for each template in outdir.
+```
+Usage: ./scripts/Run_DeepFR.sh <target> <seqfile> <outdir>
+```
