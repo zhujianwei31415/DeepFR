@@ -12,7 +12,7 @@ import sys
 import time
 import numpy as np
 
-from utils import parse_listfile
+from utils import parse_listfile, parse_protein_id
 from localconfig import caffe_root
 sys.path.insert(0, caffe_root + 'python')
 import caffe
@@ -113,8 +113,9 @@ if __name__ == '__main__':
 
     # output features
     fout = open(args.output, 'w') if args.output else sys.stdout
-    for f in features:
-        for i in f:
+    for f, feat in zip(filelist, features):
+        print('>%s' % parse_protein_id(f), file=fout)
+        for i in feat:
             print('%.8f' % i, end=' ', file=fout)
         print(file=fout)
     if args.output:

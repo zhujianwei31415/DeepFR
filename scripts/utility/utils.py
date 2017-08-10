@@ -56,3 +56,17 @@ def parse_sequence_file(seqfile):
 def check_outdir(outdir):
     if not os.path.exists(outdir):
         os.makedirs(outdir)
+
+def parse_protein_id(filename):
+    '''
+    Parse protein name from path name
+    filename = "/tmp/d1a3aa_" --> d1a3aa_
+    filename = "/tmp/d1a3aa_.fasta" --> d1a3aa_
+    '''
+
+    base = os.path.basename(filename)
+    protein_id = os.path.splitext(base)[0]
+    #name = filename.split('/')[-1]
+    #protein_id = '.'.join(name.split('.')[:-1]) or name
+
+    return protein_id

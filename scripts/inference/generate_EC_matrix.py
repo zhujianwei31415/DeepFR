@@ -2,6 +2,7 @@
 #
 # Copyright
 # Author: zhujianwei@ict.ac.cn (Jianwei Zhu)
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -94,7 +95,7 @@ def main(seqfile, threads=1, output_dir='./'):
 
     print('CCMpred from aln file...')
     ccm_file = prefix + '.ccm'
-    cmds = [ccmpred, '-t', str(threads), aln_file, ccm_file]
+    cmds = [ccmpred, '-t', str(threads), '-R', aln_file, ccm_file]
     print_commands(cmds)
     subprocess.call(cmds)
     
