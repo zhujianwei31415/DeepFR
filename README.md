@@ -1,7 +1,7 @@
 # DeepFR
 Improving Protein Fold Recognition by Extracting Fold-specific Features from Predicted Residue-residue Contacts
 
-## requirements
+## Requirements
 - caffe>=1.0
 - numpy>=1.7.1
 - scipy>=0.13.2
