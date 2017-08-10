@@ -18,8 +18,7 @@ Improving Protein Fold Recognition by Extracting Fold-specific Features from Pre
 - Modify program path (hhblits, ccmpred, caffe) in ./scripts/localconfig.py
 
 ## Usage
-- Run ```./scripts/Run_DeepFR.sh d1a3aa_ examples/d1a3aa_.fasta outdir```
-- You can find the .rank file for each template in outdir.
 ```
 Usage: ./scripts/Run_DeepFR.sh <target> <seqfile> <outdir>
 ```
+Run ```./scripts/Run_DeepFR.sh d1a3aa_ examples/d1a3aa_.fasta outdir``` and you can find the .rank file for each template in outdir.
